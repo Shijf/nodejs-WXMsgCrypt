@@ -1,7 +1,7 @@
 
 # 安装 
 
-yarn add wxmsgcrypt 或 npm i wxmsgcrypt
+`yarn add wxmsgcrypt` 或 `npm i wxmsgcrypt`
 
 # 用法(亲测可用)
 
