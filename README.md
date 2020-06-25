@@ -1,15 +1,7 @@
-<!--
- * @Github: https://github.com/shijf
- * @Author: shijf
- * @Date: 2020-06-25 19:39:52
- * @LastEditTime: 2020-06-25 19:52:52
- * @LastEditors: shijf
- * @FilePath: /WXMsgCrypt/README.md
- * @Description: 
---> 
+
 # 安装 
 
-yarn add node-ww-MsgCrypt 或 npm install node-ww-MsgCrypt
+yarn add wxmsgcrypt 或 npm i wxmsgcrypt
 
 # 用法(亲测可用)
 
