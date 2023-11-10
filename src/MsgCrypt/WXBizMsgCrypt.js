@@ -124,7 +124,7 @@ class WXBizMsgCrypt {
                         throw new Error('XML格式出错');
                     }
                 }
-                let {Encrypt:EncryptMsg} = typeof sPostData == 'string'?fxp.parse(sPostData).xml:sPostData
+                let {Encrypt:EncryptMsg} = typeof sPostData == 'string'?fxp.parse(sPostData).xml:sPostData.xml
                 if (sMsgSignature !== this.GetSignature(sTimeStamp, sNonce, EncryptMsg)) {
                     throw new Error('ivalid MsgSignature');
                 }
