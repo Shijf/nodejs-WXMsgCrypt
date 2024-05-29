@@ -50,7 +50,7 @@ server.get('/server', (req, res) => {
 
     res.send(replyEchostrMsg)
 })
-
+//fastify框架请安装yarn add fastify-xml-body-parser,直接post得到的body传进DecryptMsg()就可以，无需接受数据表等等。
 // 验证URL成功后，企业微信端会以POST的形式，将加密消息发送给我们的服务端
 server.post('/server', (req, res) => {
 

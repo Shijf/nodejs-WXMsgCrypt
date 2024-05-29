@@ -80,7 +80,7 @@ class WXBizMsgCrypt {
             TimeStamp: null,
             Nonce: {
                 _cdata: null,
-            }          
+            }
 
         };
         result.Encrypt._cdata = pc.encrypt(sReplyMsg, this.receiveId); //加密消息
@@ -110,22 +110,21 @@ class WXBizMsgCrypt {
      * @param {string} sMsgSignature  签名串，对应URL参数的msg_signature
      * @param {string} sTimeStamp string 时间戳 对应URL参数的timestamp
      * @param {string} sNonce 随机串，对应URL参数的nonce
-     * @param {string} sPostData 密文，对应POST请求的数据
+     * @param {string|object} sPostData 密文，对应POST请求的数据
      * @param {string} sMsg 解密后的原文
      */
     DecryptMsg(sMsgSignature, sTimeStamp, sNonce, sPostData = null) {
         try {
             //将XMl解析成对象
             if (sPostData) {
-
-                if (!fxp.validate(sPostData)) { //optional (it'll return an object in case it's not valid)
-                    console.log('XML格式出错');
-                    throw new Error('XML格式出错');
+                //添加判断，在fastify版本使用fastify-xml-body-parser已经自动把post数据转化为object
+                if (typeof sPostData == 'string') {
+                    if (fxp.validate(sPostData)) { //optional (it'll return an object in case it's not valid)
+                        console.log('XML格式出错');
+                        throw new Error('XML格式出错');
+                    }
                 }
-                let PostDataJsonObj = fxp.parse(sPostData);
-                PostDataJsonObj = PostDataJsonObj.xml;
-
-                let EncryptMsg = PostDataJsonObj.Encrypt;
+                let {Encrypt:EncryptMsg} = typeof sPostData == 'string'?fxp.parse(sPostData).xml:sPostData.xml
                 if (sMsgSignature !== this.GetSignature(sTimeStamp, sNonce, EncryptMsg)) {
                     throw new Error('ivalid MsgSignature');
                 }
@@ -133,9 +132,7 @@ class WXBizMsgCrypt {
                 let pc = new Prpcrypt(this.encodingAesKey);
                 //此时返回的是明文XML，需要转换为对象
                 let echoStrXml = pc.decrypt(EncryptMsg, this.receiveId);
-
                 //进一步检验XML格式是否正确
-
                 if (!fxp.validate(echoStrXml)) {
                     console.log('XML格式出错');
                     throw new Error('XML格式出错');
@@ -162,7 +159,7 @@ class WXBizMsgCrypt {
         let sha1String = crypto.createHash('sha1');
         sha1String.update(str);
         let sign = sha1String.digest('hex');
-    
+
         return sign;
     }
 

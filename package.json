@@ -1,12 +1,12 @@
 {
-  "name": "wxmsgcrypt",
-  "version": "1.0.3",
-  "description": "",
+  "name": "@wintsa/wxmsgcrypt",
+  "version": "1.0.4",
+  "description": "`yarn add wxmsgcrypt` 或 `npm i wxmsgcrypt`",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "wintsa",
   "license": "ISC",
   "dependencies": {
     "fast-xml-parser": "^3.17.4"
@@ -14,5 +14,20 @@
   "devDependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1"
-  }
+  },
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wintsa123/nodejs-WXMsgCrypt.git"
+  },
+  "keywords": [
+    "wechat",
+    "Crypt"
+  ],
+  "bugs": {
+    "url": "https://github.com/wintsa123/nodejs-WXMsgCrypt/issues"
+  },
+  "homepage": "https://github.com/wintsa123/nodejs-WXMsgCrypt#readme"
 }
